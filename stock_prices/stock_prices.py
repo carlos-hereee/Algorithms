@@ -2,8 +2,24 @@
 
 import argparse
 
+# find the maximum difference between the smallest and largest prices in the list of prices
+
 
 def find_max_profit(prices):
+    profit = prices[1] - prices[0]
+
+    for price in prices[:-1]:
+        # iterate from 1 to the n-1 element (we have no shorting
+        # so we can only sell on the last element)
+        for sell in prices[prices.index(price)+1:]:
+            # iterate to end of prices
+            if (sell - price) > profit:
+                profit = sell - price
+
+    return profit
+
+
+print(f'prices ', find_max_profit([1050, 270, 1540, 3800, 2]))
 
 
 if __name__ == '__main__':
